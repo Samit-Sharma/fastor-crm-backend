@@ -37,6 +37,10 @@ const authLimiter = rateLimit({
   legacyHeaders: false,
   message: { success: false, message: "Too many requests. Please try again later." }
 });
+
+app.get("/", (req, res) => {
+  res.status(200).json({ success: true, message: "Welcome to the CRM API." });
+});
 app.use("/v1/pwa/user", authLimiter);
 
 app.get("/health", (req, res) => {
