@@ -24,21 +24,7 @@ cd fastor-crm-backend
 npm install
 ```
 
-## 2. Configure environment
 
-Copy `.env.example` to `.env` and update values:
-
-```env
-PORT=5000
-NODE_ENV=development
-MONGODB_URI=mongodb://127.0.0.1:27017/fastor_crm
-JWT_SECRET=use_a_long_random_secret_of_at_least_32_characters
-JWT_EXPIRES_IN=1d
-BCRYPT_SALT_ROUNDS=12
-CLIENT_ORIGIN=http://localhost:5173,http://localhost:5175
-```
-
-For MongoDB Atlas, replace `MONGODB_URI` with your Atlas connection string. Never commit `.env`.
 
 ## 3. Run
 

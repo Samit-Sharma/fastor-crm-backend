@@ -1,0 +1,70 @@
+{
+  "info": {
+    "name": "Fastor CRM API",
+    "_postman_id": "a0a0e0c0-9b40-4a71-9a10-01b5b6bba001",
+    "description": "Core API requests for the Fastor CRM assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" },
+    { "key": "enquiryId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": { "method": "GET", "url": "{{baseUrl}}/health" }
+    },
+    {
+      "name": "Register employee",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"name\":\"Rahul Sharma\",\"email\":\"rahul@example.com\",\"password\":\"StrongPass123\"}" },
+        "url": "{{baseUrl}}/v1/pwa/user/register"
+      }
+    },
+    {
+      "name": "Login employee",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"email\":\"rahul@example.com\",\"password\":\"StrongPass123\"}" },
+        "url": "{{baseUrl}}/v1/pwa/user/login"
+      }
+    },
+    {
+      "name": "Submit public enquiry (no token)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"name\":\"John Doe\",\"email\":\"john@example.com\",\"phone\":\"9876543210\",\"courseInterest\":\"MERN Stack Development\",\"message\":\"Interested in next batch\"}" },
+        "url": "{{baseUrl}}/v1/pwa/enquiry/public"
+      }
+    },
+    {
+      "name": "Fetch public enquiries",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/v1/pwa/enquiry/public?page=1&limit=20"
+      }
+    },
+    {
+      "name": "Claim enquiry",
+      "request": {
+        "method": "PATCH",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/v1/pwa/enquiry/{{enquiryId}}/claim"
+      }
+    },
+    {
+      "name": "Fetch my leads",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/v1/pwa/enquiry/my-leads?page=1&limit=20"
+      }
+    }
+  ]
+}
